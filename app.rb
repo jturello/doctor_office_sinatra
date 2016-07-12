@@ -6,3 +6,5 @@ require('./lib/definition')
 require('pry')
 require('launchy')
 require('pg')
+
+DB = PG.connect({:dbname => "doctors_office_test"})
