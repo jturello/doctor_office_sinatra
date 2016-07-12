@@ -8,21 +8,24 @@ describe('Doctor') do
       expect(Doctor.new({:name => 'John Smith', :specialty => 'cardiologist'}).class).to eq(Doctor)
     end
 
-    it('assigns the id returned from the database as the doctor object') do
-      doc = Doctor.new({:name => 'Bob Jones', :specialty => 'internal medicine'})
-      doc.save()
-      result = DB.exec("SELECT id, name FROM doctors WHERE id = #{doc.id};")
-      expect(result.getvalue(0,0).to_i).to eq(doc.id)
-    end
   end
 
   describe('#save') do
+
     it('saves a doctor with name and specialty in the database') do
       doc = Doctor.new({:name => 'Tim Ber', :specialty => 'cardiologist'})
       doc.save()
       result = DB.exec("SELECT id, name FROM doctors WHERE id = #{doc.id};")
       expect(result.getvalue(0,1)).to eq(doc.name)
     end
+
+    it("assigns the Doctor object's id from the value returned from the database") do
+      doc = Doctor.new({:name => 'Bob Jones', :specialty => 'internal medicine'})
+      doc.save()
+      result = DB.exec("SELECT id FROM doctors WHERE id = #{doc.id};")
+      expect(result.getvalue(0,0).to_i).to eq(doc.id)
+    end
+
   end
 
   describe('#specialty') do
