@@ -3,7 +3,7 @@ require('spec_helper')
 
 describe('Doctor') do
   describe('#initialize') do
-    
+
     it('instantiates a doctor object') do
       expect(Doctor.new({:name => 'John Smith', :specialty => 'cardiologist'}).class).to eq(Doctor)
     end
@@ -23,21 +23,19 @@ describe('Doctor') do
       result = DB.exec("SELECT id, name FROM doctors WHERE id = #{doc.id};")
       expect(result.getvalue(0,1)).to eq(doc.name)
     end
+  end
 
-    describe('#specialty') do
-      it("returns the doctor's specialty") do
-        expect(Doctor.new({:name => 'Tim Ber', :specialty => 'cardiologist'}).specialty).to eq('cardiologist')
-      end
-    end
-
-    describe('#name') do
-      it("returns the doctor's name") do
-        expect(Doctor.new({:name => 'Tim Ber', :specialty => 'cardiologist'}).name).to eq('Tim Ber')\
-      end
+  describe('#specialty') do
+    it("returns the doctor's specialty") do
+      expect(Doctor.new({:name => 'Tim Ber', :specialty => 'cardiologist'}).specialty).to eq('cardiologist')
     end
   end
 
-
+  describe('#name') do
+    it("returns the doctor's name") do
+      expect(Doctor.new({:name => 'Tim Ber', :specialty => 'cardiologist'}).name).to eq('Tim Ber')\
+    end
+  end
 
 
 end
