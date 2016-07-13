@@ -47,6 +47,7 @@ describe('Patient') do
       doc.save()
       patient = Patient.new({:name => 'Bob Jones', :dob => '1960-07-01'})
       patient.save()
+      patient.assign_doctor(doc.id)
       expect(Doctor.find(patient.doctor_id)).to eq(doc)
     end
   end

@@ -13,10 +13,7 @@ class Doctor
   end
 
   define_singleton_method(:find) do |id|
-    puts "yonder"
-    puts id
     result = DB.exec("SELECT id, name, specialty FROM doctors WHERE id = #{id};")
-    puts result.values[0]
     return Doctor.new({:id => result.getvalue(0,0), :name => result.getvalue(0,1), :specialty => result.getvalue(0,2)})
   end
 
