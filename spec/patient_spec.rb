@@ -40,4 +40,15 @@ describe('Patient') do
       expect(result.getvalue(0,0).to_i).to eq(patient.id)
     end
   end
+
+  describe('#assign_doctor') do
+    it('assigns patient to doctor - adding doctor.id as foreign key on Patient object/record') do
+      doc = Doctor.new({:name => 'Jenna Jenkins', :specialty => 'internal medicine'})
+      doc.save()
+      patient = Patient.new({:name => 'Bob Jones', :dob => '1960-07-01'})
+      patient.save()
+      expect(Doctor.find(patient.doctor_id)).to eq(doc)
+    end
+  end
+
 end
